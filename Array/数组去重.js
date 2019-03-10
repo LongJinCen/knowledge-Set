@@ -1,0 +1,1 @@
+var newArr = Array.from(new Set(arr))
