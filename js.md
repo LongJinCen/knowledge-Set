@@ -143,3 +143,8 @@ Son.prototype.sayHi = function () {}
 - Object.create() 当为null的时候__proto__为空
 - 
 
+## 判断 src 加载完成
+
+两种方式
+- ele.onload 
+- ele.onreadystatechange 并配合 ele.readyState使用
