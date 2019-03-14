@@ -11,26 +11,26 @@ function quickSort(arr, left, right) {
     if (left > right) {
         return
     }
-    flag = left
+    flag = arr[left]
     i = left
     j = right
     while(i != j) {
-        while(arr[j] >= temp && i < j) {
+        while(arr[j] >= flag && i < j) {
             j--
         }
 
-        while(arr[i] <= temp && i < j) {
+        while(arr[i] <= flag && i < j) {
             i++
         }
 
         if (i < j) {
-            temp = a[j]
-            a[j] = a[i]
-            a[i] = temp
+            temp = arr[j]
+            arr[j] = arr[i]
+            arr[i] = temp
         }
     }
-    a[left] = a[i]
-    a[i] = temp
+    arr[left] = arr[i]
+    arr[i] = flag
     quickSort(arr, left, i - 1)
     quickSort(arr, i + 1, right)
 }
