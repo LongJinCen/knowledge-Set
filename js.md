@@ -143,8 +143,18 @@ Son.prototype.sayHi = function () {}
 - Object.create() 当为null的时候__proto__为空
 - 
 
+## 原型以及对象常用方法
+
+- Object.create
+- instanceOf 判断实例
+- Object.keys() 获取实例上所有可枚举的属性
+- for in 遍历原型链
+- Object.defineProperties(obj,value, {})
+- Object.defineProperty(obj, {})
+
 ## 判断 src 加载完成
 
 两种方式
 - ele.onload 
 - ele.onreadystatechange 并配合 ele.readyState使用
+
