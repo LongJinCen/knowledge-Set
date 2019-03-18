@@ -92,7 +92,7 @@ https://segmentfault.com/a/1190000017506726
 
 在函数被定义的时候生成，存储的是引用而不是副本，运行时会添加一个活动对象
 
-## 闭
+## 闭包
 
 
 - 被引用了作用域的函数执行完毕后，只是切断了对自己作用域的引用，但是被返回的函数还引用着它的作用域，因此不会被销毁
@@ -156,5 +156,5 @@ Son.prototype.sayHi = function () {}
 
 两种方式
 - ele.onload 
-- ele.onreadystatechange 并配合 ele.readyState使用
+- ele.onreadystatechange 并配合 ele.readyState使用 // ie
 
