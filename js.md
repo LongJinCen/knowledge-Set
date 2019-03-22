@@ -38,7 +38,7 @@ https://segmentfault.com/a/1190000017506726
 	script.src = 'demo.js' //异步加载
 	if (script.readyState) { 
 		script.onreadystatechange = function () {
-			if (script.readyState = "complete") {
+			if (script.readyState == "complete") {
 				//资源加载完毕
 			}
 		} //IE
@@ -94,7 +94,6 @@ https://segmentfault.com/a/1190000017506726
 
 ## 闭
 
-
 - 被引用了作用域的函数执行完毕后，只是切断了对自己作用域的引用，但是被返回的函数还引用着它的作用域，因此不会被销毁
 - 内部函数执行完毕只销毁自己的上下文，它的[[scope]]在外部函数执行完毕之后会被销毁
 
@@ -141,7 +140,6 @@ Son.prototype.sayHi = function () {}
 - instanceof
 - func.prototype.isPrototypeOf
 - Object.create() 当为null的时候__proto__为空
-- 
 
 ## 原型以及对象常用方法
 
@@ -149,8 +147,8 @@ Son.prototype.sayHi = function () {}
 - instanceOf 判断实例
 - Object.keys() 获取实例上所有可枚举的属性
 - for in 遍历原型链
-- Object.defineProperties(obj,value, {})
-- Object.defineProperty(obj, {})
+- Object.defineProperty(obj,value, {})
+- Object.defineProperties(obj, {})
 
 ## 判断 src 加载完成
 
