@@ -155,4 +155,3 @@ Son.prototype.sayHi = function () {}
 两种方式
 - ele.onload 
 - ele.onreadystatechange 并配合 ele.readyState使用 // ie
-
