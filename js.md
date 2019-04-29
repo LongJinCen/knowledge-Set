@@ -155,3 +155,7 @@ Son.prototype.sayHi = function () {}
 两种方式
 - ele.onload 
 - ele.onreadystatechange 并配合 ele.readyState使用 // ie
+
+## 生成随机数
+
+例如要生成 20 - 89 的随机数。Math.random()*(89 - 20) + 20
