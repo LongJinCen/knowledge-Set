@@ -35,14 +35,15 @@
 // 给定n表示有几段绳子，以及a[i]地i根绳子的长度。绳子可以裁剪，
 // 我们给定一个M,表示我们需要的等长的绳子数量，求我们可以将n裁剪成M段的时候，M段绳子的最大长度
 
-var str = 'hellooooffffvvvvv'
-// 第一步将所有超过三个的字母变成两个
-var middleStr = str.replace(/([a-zA-Z])\1\1*/g, function (match) {
-    return match[0] + match[1]
-})
-// 第二步处理连续的情况
-var resultStr = middleStr.replace(/([a-zA-Z])\1([a-zA-Z])\2/g, function (match, a, b) {
-    return a + a + b
-})
+// var str = 'hellooooffffvvvvv'
+// // 第一步将所有超过三个的字母变成两个
+// var middleStr = str.replace(/([a-zA-Z])\1\1*/g, function (match) {
+//     return match[0] + match[1]
+// })
+// // 第二步处理连续的情况
+// var resultStr = middleStr.replace(/([a-zA-Z])\1([a-zA-Z])\2/g, function (match, a, b) {
+//     return a + a + b
+// })
 
-console.log(resultStr)
+// console.log(resultStr)
+
