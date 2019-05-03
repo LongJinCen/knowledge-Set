@@ -1,3 +1,10 @@
+## 零碎知识点
+- 文本元素之间的一个空白符可以通过设置字体为0px来消除
+- 响应式布局: 宽度应该使用百分比，配合使用 flex布局，媒体查询
+- `<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">` 是为了避免将整个页面放在移动端被缩小，而是应该和pc端大小一致，出现超出时，显示滚动条
+- transition: 可以设置多个过渡属性，如 transtion: width 0.5s liner , height 0.5s liner 0.5s;
+ 
+
 ## 触发bfc
 - position: absolute
 - overflow: hidden
@@ -65,4 +72,8 @@ pc端只有一个视口，移动端有多个视口
 
 `<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">`
 
+## 水平垂直剧中
 
+- flex布局
+- left top 为 百分之五十 maring left top 往回拉高度的一半(translate(-50%, -50%))
+- text-aligin 为 center, line-height
