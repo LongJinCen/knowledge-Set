@@ -6,6 +6,7 @@
  * 需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。
  */
 
+ // 时间复杂度为O(N^2) 可以做到稳定
 function insertionSort(arr) {
     for (let i = 1; i < arr.length; i++) {
         let key = arr[i]

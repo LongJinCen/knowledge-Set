@@ -5,6 +5,8 @@
  * @param {右边界} right 
  * 将数组分成两部分，左边的排好序，右边的排好序，每次都通过定义两个指针的外排形式，将左右两边排好序的数组进行合并，并将合并后的有序数组覆盖到原数组的指定位置
  */
+
+ // 时间复杂度根据 master 公式得到 O(NlongN) 可以做到稳定
 function merge(arr, left, right) {
     if(left === right) return
     let middle = Math.floor((left + right) / 2)

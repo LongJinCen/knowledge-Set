@@ -6,6 +6,8 @@
  * 经典快拍，最差情况为O(n^2),应使用随机快排
  * 找基准数，是左边全部小于它，右边全部大于他，每次右指针先动，然后左边指针动
  */
+
+// 时间复杂度根据 master 公式为 N(longN)
 function quickSort(arr, left, right) {
     let i, j, flag
     if (left > right) {

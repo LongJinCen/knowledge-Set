@@ -5,6 +5,8 @@
  * 给定一个值，要求数组左边的值全部小于 num ，数组右边的值全部大于 num ,中间的值全部等于 num
  * 定义三个区域
  */
+
+// 时间复杂度为O(N) 做不到稳定
 function partition(arr, num) {
     let less = -1,
         more = arr.length,
