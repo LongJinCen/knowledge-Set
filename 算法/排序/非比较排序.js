@@ -7,7 +7,7 @@ function maxDiffer(arr) {
         maxValue = Number.MIN_VALUE,
         len = arr.length;
     if(minValue === maxValue) return 0
-    arr.forEach(value => {
+    arr.forEach(value => { // 求出最大最小值
         maxValue = value > maxValue ? value : maxValue
         minValue = value < minValue ? value : minValue
     });
@@ -21,19 +21,23 @@ function maxDiffer(arr) {
     boolbucket[0] = true
     boolbucket[len] = true
     arr.forEach(value => {
-        let index = judge(value, len, minValue, maxValue)
+        if(value === minValue || value === maxValue) {
+            return
+        }
+        let index = judge(value, len, minValue, maxValue) - 1
         if(value > maxbucket[index]) {
             maxbucket[index] = value
-        } else if (value < minbucket[index]) {
+        }
+        if (value < minbucket[index]) {
             minbucket[index] = value
         }
         boolbucket[index] = true
     })
     let maxdiffer = 0
-    for(let i = 0; i < len; ) { // 从0到第N个桶
+    for(let i = 0; i < len; ) { // 从0到第N个桶 计算最大差值
         let cur = i,
             next = i + 1
-        if(!boolbucket[next]) {
+        if(!boolbucket[next]) { // 如果下一个桶为空，那么继续往下找
             while(!boolbucket[next]) {
                 next++
             }
@@ -44,9 +48,15 @@ function maxDiffer(arr) {
         cur = i = next
         next += 1
     }
+    return maxdiffer
+}
+// 负责计算当前值归属于哪一个桶
+function judge(value, len, minValue, maxValue) {
+    let average = Math.floor((maxValue - minValue) / (len + 1)),
+        temp = value - minValue + 1;
+    return temp % average === 0 ? temp / average : Math.floor(temp / average) + 1
 }
 
-function judge(value, len, minValue, maxValue) {
-    let average = Math.floor((maxValue - minValue) / (len + 1))
-    return (value - minValue) % average === 0 ? (value - minValue) / average : (value - minValue) / average + 1
-}
+var arr = [1, 10, 20, 100, 80, 30, 55, 22, 70]
+
+console.log(maxDiffer(arr))
