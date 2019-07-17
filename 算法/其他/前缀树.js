@@ -1,22 +1,22 @@
-// ²»¶ÏÏñÄ³Ò»¸öÊ÷ÀïÃæÌí¼Ó×Ö·û´®¡£¿ÉÒÔÓÃÀ´´¦ÀíºÍÇ°×ºÒÔ¼°¹«¹²×Ö·û´®Ïà¹ØµÄÎÊÌâ
+// ä¸æ–­åƒæŸä¸€ä¸ªæ ‘é‡Œé¢æ·»åŠ å­—ç¬¦ä¸²ã€‚å¯ä»¥ç”¨æ¥å¤„ç†å’Œå‰ç¼€ä»¥åŠå…¬å…±å­—ç¬¦ä¸²ç›¸å…³çš„é—®é¢˜
 
 function TreeNode() {
-    this.path = 0 // ¾­¹ýÕâ¸ö½ÚµãµÄÂ·ÓÐ¶àÉÙÌõ
-    this.end = 0 // ÒÔÕâ¸ö½Úµã½áÎ²µÄ×Ö·û´®ÓÐ¶àÉÙ
-    // ÉÏÃæÁ½¸öÊý¾ÝÏî¿ÉÒÔ¸ù¾Ý×Ô¼ºµÄÐèÒªÀ´½øÐÐ¸ü¸Ä¡£ÀýÈçµÚÒ»¸öÊý¾ÝÏî¿ÉÒÔÓÃÀ´ÖªµÀÓÐ¶àÉÙ¸öÒÔ¸Ã×Ö·û´®ÎªÇ°×ºµÄ×Ö·û´®£¬µÚ¶þ¸öÊý¾ÝÏî¿ÉÒÔÓÃÀ´ÖªµÀÊÇ·ñ³öÏÖ¹ý¸Ã×Ö·û´®
-    this.nextNode = new Array(24) // 24¸ö×ÖÄ¸
+    this.path = 0 // ç»è¿‡è¿™ä¸ªèŠ‚ç‚¹çš„è·¯æœ‰å¤šå°‘æ¡
+    this.end = 0 // ä»¥è¿™ä¸ªèŠ‚ç‚¹ç»“å°¾çš„å­—ç¬¦ä¸²æœ‰å¤šå°‘
+    // ä¸Šé¢ä¸¤ä¸ªæ•°æ®é¡¹å¯ä»¥æ ¹æ®è‡ªå·±çš„éœ€è¦æ¥è¿›è¡Œæ›´æ”¹ã€‚ä¾‹å¦‚ç¬¬ä¸€ä¸ªæ•°æ®é¡¹å¯ä»¥ç”¨æ¥çŸ¥é“æœ‰å¤šå°‘ä¸ªä»¥è¯¥å­—ç¬¦ä¸²ä¸ºå‰ç¼€çš„å­—ç¬¦ä¸²ï¼Œç¬¬äºŒä¸ªæ•°æ®é¡¹å¯ä»¥ç”¨æ¥çŸ¥é“æ˜¯å¦å‡ºçŽ°è¿‡è¯¥å­—ç¬¦ä¸²
+    this.nextNode = new Array(24) // 24ä¸ªå­—æ¯
 }
 
-const root = new TreeNode() // ¸ù½Úµã£¬ËùÓÐµÄÌí¼ÓÉ¾³ý¸ü¸Ä¶¼ÐèÒª´Ó¸ù½Úµã³ö·¢
+const root = new TreeNode() // æ ¹èŠ‚ç‚¹ï¼Œæ‰€æœ‰çš„æ·»åŠ åˆ é™¤æ›´æ”¹éƒ½éœ€è¦ä»Žæ ¹èŠ‚ç‚¹å‡ºå‘
 
-function trie (string){ // µ¥¸ö×Ö·û´®²åÈëÇ°×ºÊ÷
+function trie (string){ // å•ä¸ªå­—ç¬¦ä¸²æ’å…¥å‰ç¼€æ ‘
     if(!string) {
         return
     }
     const arrChar = string.split('')
     const node = root
     for (let i = 0; i < arrChar.length; i++) {
-        const index = arrChar[i] - 'a'; // ¼ÙÉèÊäÈëµÄ×Ö·û´®ÔÚa~zÖ®¼ä
+        const index = arrChar[i] - 'a'; // å‡è®¾è¾“å…¥çš„å­—ç¬¦ä¸²åœ¨a~zä¹‹é—´
         if(!node.nextNode[index]) {
             node.nextNode[index] = new TreeNode()
         }
@@ -26,13 +26,13 @@ function trie (string){ // µ¥¸ö×Ö·û´®²åÈëÇ°×ºÊ÷
     node.end++
 }
 
-// ·µ»Ø³öÏÖµÄÕâ¸ö×Ö·û´®µÄ´ÎÊý
+// è¿”å›žå‡ºçŽ°çš„è¿™ä¸ªå­—ç¬¦ä¸²çš„æ¬¡æ•°
 function search(word) {
     if(!word) return
     const node = root
     const arrChar = word.split('')
     for (let i = 0; i < arrChar.length; i++) {
-        const index = arrChar[i] - 'a'; // ¼ÙÉèÊäÈëµÄ×Ö·û´®ÔÚa~zÖ®¼ä
+        const index = arrChar[i] - 'a'; // å‡è®¾è¾“å…¥çš„å­—ç¬¦ä¸²åœ¨a~zä¹‹é—´
         if(!node.nextNode[index]) {
             return 0
         }
@@ -41,26 +41,26 @@ function search(word) {
     return node.end
 }
 
-// ·µ»Ø¹«¹²Ç°×ºµÄ×Ö·û´®µÄ´ÎÊý
+// è¿”å›žå…¬å…±å‰ç¼€çš„å­—ç¬¦ä¸²çš„æ¬¡æ•°
 function prefix(word) {
     if(!word) return
     const node = root
     const arrChar = word.split('')
     for (let i = 0; i < arrChar.length; i++) {
-        const index = arrChar[i] - 'a'; // ¼ÙÉèÊäÈëµÄ×Ö·û´®ÔÚa~zÖ®¼ä
+        const index = arrChar[i] - 'a'; // å‡è®¾è¾“å…¥çš„å­—ç¬¦ä¸²åœ¨a~zä¹‹é—´
         node = node.nextNode[index]
     }
     return node.path
 }
 
-// delete É¾³ýÒ»¸ö×Ö·û´®
+// delete åˆ é™¤ä¸€ä¸ªå­—ç¬¦ä¸²
 function deleteWord(word) {
     if(!word) return
     if(search(word) === 0) return
     const node = root
     const arrChar = word.split('')
     for (let i = 0; i < arrChar.length; i++) {
-        const index = arrChar[i] - 'a'; // ¼ÙÉèÊäÈëµÄ×Ö·û´®ÔÚa~zÖ®¼ä
+        const index = arrChar[i] - 'a'; // å‡è®¾è¾“å…¥çš„å­—ç¬¦ä¸²åœ¨a~zä¹‹é—´
         if(node.path === 1) {
             node.path = 0
             break
