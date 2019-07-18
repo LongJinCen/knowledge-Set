@@ -1,7 +1,8 @@
+function isObj(o) {
+	return (typeof o === 'object' || typeof o === 'function') && o !== null
+}
+
 function deepclone(obj) {
-	function isObj(o) {
-		return (typeof o === 'object' || typeof o === 'function') && o !== null
-	}
 	if (!isObj(obj)) {
 		throw new TypeError('不是对象')
 	}
