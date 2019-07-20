@@ -23,8 +23,3 @@ var newAdd = Curry(add)
 var result1 = newAdd(1)(2)(3)(4)
 var result2 = newAdd(2,2)(2,3)
 var newAdd1 = newAdd(1); var result3 = newAdd1(2,3,4)
---------------------- 
-作者：EDB 
-来源：CSDN 
-原文：https://blog.csdn.net/Her_smile/article/details/89642954 
-版权声明：本文为博主原创文章，转载请附上博文链接！

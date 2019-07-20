@@ -62,3 +62,22 @@ function walk(arr, i, j) {
     dp[i][j] = arr[i][j] + Math.max(right, left)
     return dp[i][j] // 选择最优解
 }
+
+
+//给你一个数组arr，和一个整数aim。如果可以任意选择arr中的 数字，能不能累加得到aim，返回true或者false
+/**
+ * 
+ * @param {*} arr 
+ * @param {*} curi 
+ * @param {*} sum 
+ * @param {*} aim 
+ */
+function sum(arr, curi, sum,  aim) {
+    if(arr.length == curi) {
+        return  sum === aim
+    }
+    return sum(arr, curi + 1, sum + arr[curi], aim) || sum(arr, curi + 1, sum, aim)
+}
+
+// 分析后效性: 对于前面的任意一个状态i 和 sum ,后面的值都是一样的结果，所以没有后效性，可以改为动态规划, 一个dp表，x是所有给出的和,表示aim不会超出这个范围，y是所有可能的i，对于任意一个
+// crui 和 sum 都依赖于 curi + 1, sim + arr[curi] 和 curi + 1 和 arr[curi] 这两个格子
