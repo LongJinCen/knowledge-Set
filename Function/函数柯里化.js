@@ -5,9 +5,11 @@ function FixedParamsCurry(fn) {
         return fn.apply(this, newArgs)
     }
 }
+
 function add(a, b, c, d) {
     return a + b + c + d
 }
+
 function Curry(fn, length) {
     var argLength = length || fn.length
     return function () {
@@ -19,7 +21,33 @@ function Curry(fn, length) {
         }
     }
 }
+
 var newAdd = Curry(add)
 var result1 = newAdd(1)(2)(3)(4)
 var result2 = newAdd(2,2)(2,3)
-var newAdd1 = newAdd(1); var result3 = newAdd1(2,3,4)
+var newAdd1 = newAdd(1);
+var result3 = newAdd1(2,3,4)
+
+
+function add (a, b, c, d) {
+    return a + b + c + d
+}
+
+function Curry(fn ,length) {
+    let argLength = length || fn.length
+    return function () {
+        if(arguments.length < argLength) {
+            let combined = [fn].concat([].slice.call(arguments, 0))
+            return Curry(Curry())
+        } else {
+            return fn.apply(this. arguments)
+        }
+    }
+}
+
+var newAdd = Curry(add)
+var result1 = newAdd(1)(2)(3)(4)
+var result2 = newAdd(1,2)(3,4)
+
+var newAdd1 = newAdd(1)
+var result3 = newAdd1(2, 3, 4)

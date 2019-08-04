@@ -18,7 +18,6 @@ function GetUglyNumber_Solution(index) {
     return result[index - 1]
 }
 
-
 function GetUglyNumber_Solution(index) {
     if (index <= 0) return []
     let dp = [], total = 0, result
