@@ -13,10 +13,15 @@ function partition(arr, num) {
         cur = 0;
     while(cur < more) {
         if(arr[cur] < num) {
-            swap(arr, ++less, cur++)
+            // less 区域扩大
+            // swap(arr, ++less, cur++)
+            less = less + 1
+            cur = cur + 1
         } else if(arr[cur] > num) {
+            // more 区域扩大
             swap(arr, --more, cur)
         } else {
+            // 相等 cur 增加
             cur++
         }
     }
