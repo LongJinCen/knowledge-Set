@@ -23,3 +23,48 @@ function midOrderTraverse(node) {
     }
     return true
 }
+
+// 搜索二叉树的 增删改查
+function AbtractBinarySearchTree(Head) {
+    const Root = Head
+    let size = 0
+    // 搜索一个值
+    function search(val) {
+        let node = Root
+        while (node != null && node.value != null && node.value != val) {
+            if (val < node.value) {
+                node = node.left
+            } else {
+                node = node.right
+            }
+        }
+        return node
+    }
+    // 插入一个值
+    function insert(val) {
+        if (Root === null) {
+            Root = new Node(val)
+            size++
+            return Root
+        }
+        let insertParentNode = null
+        let searchTempNode = Root
+        while (searchTempNode != null && searchTempNode.value != null) {
+            insertParentNode = searchTempNode
+            if (val < searchTempNode.val) {
+                searchTempNode = searchTempNode.left
+            } else {
+                searchTempNode = searchTempNode.right
+            }
+        }
+        let newNode = new Node(val)
+        if (insertParentNode.val > newNode.val) {
+            insertParentNode.left = newNode
+        } else {
+            insertParentNode.right = newNode
+        }
+    }
+    function del(val) {
+        
+    }
+}

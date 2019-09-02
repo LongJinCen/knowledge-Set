@@ -159,3 +159,30 @@ Son.prototype.sayHi = function () {}
 ## 生成随机数
 
 例如要生成 20 - 89 的随机数。Math.random()*(89 - 20) + 20
+
+## 封装 JSONP
+```javscript
+function jsonp( url, fn ){
+    //构造一个函数到window上
+    var fnName="__jsonpFn"+Math.random().toString().replace(".","");
+    //创建script标签
+    var script=document.createElement("script"),
+    //获得页面中的head标签
+        head=document.head;
+    //设置script标签请求的src，记得带有参数
+    script.src=url + "?callback=" + fnName;
+    //先绑定函数，再请求更加安全
+    window[fnName]=function( data ){ //发回数据调用的内容
+        fn(data);  //用户写的函数
+
+        //删除函数，删除内容
+
+        delete window[fnName];
+        head.removeChild( script );
+    };
+
+    //将script标签加到页面中，浏览器就会自动的请求下载js格式的字符串
+    head.appendChild(script);
+}
+```
+## interface 和 class 的区别和关系
