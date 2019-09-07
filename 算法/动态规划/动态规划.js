@@ -15,7 +15,7 @@
 
 
 // 暴力递归方式
-function walk(arr, i, j,) {
+function walk(arr, i, j) {
     if(i === arr.length - 1 && j === arr[0].length - 1) { // 到达最右下角
         return arr[i][j]
     }
@@ -39,7 +39,8 @@ function walk(arr, i, j,) {
 
 // 对于有重复状态的，并且是无后效性，即对于同一个参数，返回值一定是固定的，一般都可以改为动态规划
 
-// 所以上面的改造，可以使用一个二维表(dp)来存储计算过得值，然后再递归过程当中去更新它, 最后直接从dp表中拿想要的值
+// 记忆化搜索:
+// 所以上面的改造，可以使用一个二维表(dp)来存储计算过得值，然后再递归过程当中去更新它, 最后直接从dp表中拿想要的值,
 var dp = [[]]
 dp[i][j] = 200
 function walk(arr, i, j) {
@@ -58,13 +59,28 @@ function walk(arr, i, j) {
         return dp[i][j]
     }
     // 没有到边界
-    let right = arr[i][j] + walk(arr, i, j + 1)
-    let left = arr[i][j] + walk(arr, i + 1, j)
+    let right = walk(arr, i, j + 1)
+    let left = walk(arr, i + 1, j)
     dp[i][j] = arr[i][j] + Math.max(right, left)
     return dp[i][j] // 选择最优解
 }
 
-
+// 真正的 dp 改造:
+function walkDP(arr) {
+    if(!arr || arr.length < 1) return 0
+    let x = arr.length,
+        y = arr[0].length
+    for (let i = x - 2; i >= 0; i--) {
+        arr[i][y - 1] = arr[i + 1][y - 1] + arr[i][y - 1]
+        arr[y - 1][i] = arr[y - 1][i + 1] + arr[y - 1][i]
+    }
+    for(let i = x - 2; i >= 0; i--) {
+        for(let j = y - 2; j >= 0; j--) {
+            arr[i][j] = Math.min(arr[i + 1][j], arr[i][j + 1]) + arr[i][j]
+        }
+    }
+    return arr[0][0]
+}
 //给你一个数组arr，和一个整数aim。如果可以任意选择arr中的 数字，能不能累加得到aim，返回true或者false
 /**
  * 
@@ -82,3 +98,28 @@ function sum(arr, curi, sum,  aim) {
 
 // 分析后效性: 对于前面的任意一个状态i 和 sum ,后面的值都是一样的结果，所以没有后效性，可以改为动态规划, 一个dp表，x是所有给出的和,表示aim不会超出这个范围，y是所有可能的i，对于任意一个
 // crui 和 sum 都依赖于 curi + 1, sim + arr[curi] 和 curi + 1 和 arr[curi] 这两个格子
+function sumDP(arr, aim) {
+    if (!arr || arr.length < 1) return false
+    let sum = arr.reduce((pre, cur) => {
+        return pre + cur
+    })
+    let len = arr.length
+    let dp = new Array(len + 1)
+    dp[len] = []
+    for (let i = 0; i <= sum; i++) {
+        dp[len][i] = i === aim ? true : false
+    }
+    for(let i = len - 1; i >= 0; i--) {
+        dp[i] = []
+        for(let j = sum; j >= 0; j--) {
+            let res = false
+            if (j + arr[i] <= sum) {
+                res = res || dp[i + 1][j + arr[i]] || dp[i + 1][j]
+            } else {
+                res = res || dp[i + 1][j]
+            }
+            dp[i][j] = res
+        }
+    }
+    return dp[0][0]
+}
