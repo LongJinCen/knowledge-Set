@@ -25,11 +25,29 @@ function maxLength(arr, aim) {
 // 扩展：
 // 1. 给定一个数组，求奇数和偶数个数相等的最长的子数组
 // 思路：奇数变为 1, 偶数变为 -1, 求何为 0 的最长子数组
+function maxLengthOddEvenArr(arr) {
+    arr = arr.map(v => {
+        return v % 2 === 1 ? -1 : 1
+    })
+    let map = new Map()
+    map.set(0, -1)
+    let maxLen = 0, sum = 0
+    for (let i = 0; i < arr.length; i++) {
+        sum += arr[i]
+        if (map.get(sum - 0)) {
+            maxLen = Math.max(maxLen, i - map.get(sum - 0))
+        }
+        if (!map.get(sum)) {
+            map.set(sum, i)
+        }
+    }
+    return maxLen
+}
 // 2. 一个数组中只有 0, 1, 2, 求一个数组中 1 和 2 长度相同的最长子数组长度为多少
 // 思路：1 还是 1，2变 -1, 求何为 0 的最长子数组
 
 // 3. 一个数组互相异或最终为 0为我们给定的数组。给定一个数组，求一种分割方法，使得分割出来的的所有数组中满足前面给定条件的数组最多。
-// 思路：异或满足交换律，且 0 & n = n, n ^ n = 0。使用动态规划。
+// 思路：异或满足交换律，且 0 ^ n = n, n ^ n = 0。使用动态规划。
 function maxLength(arr) {
     if (!arr || arr.length === 0) return
     let dp = []
