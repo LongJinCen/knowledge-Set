@@ -1,27 +1,23 @@
 /**
- * 
- * @param {*} arr 
+ * dp动态规划问题，硬币问题
+ * 假设有 1 元，3 元，5 元的硬币若干（无限），现在需要凑出 11 元，问如何组合才能使硬币的数量最少？
+ * @param {*} arr
  * 将问题化解为1元钱需要几个硬币，2元钱需要几个硬币，以此类推，每个的结论都依赖前面的结论
  * 将问题化解为小问题，并且每一步解决的是同一个问题
  */
 
-// function moneyCount(arr = [1, 3, 5]) {
-//     var sum = 11,
-//         dp = []
-//     for (let i = 0; i <= sum; i++) {
-//         dp[i] = i
-//     }
-//     for (var i = 1; i <= sum; i++) {
-//         for (var j = 0; j <= arr.length; j++) {
-//             if (i >= arr[j] && dp[i - arr[j]] + 1 <= dp[i]) {
-//                 dp[i] = dp[i - arr[j]] + 1
-//             }
-//         }
-//     }
-// }
-
-// dp动态规划问题，硬币问题
-// 假设有 1 元，3 元，5 元的硬币若干（无限），现在需要凑出 11 元，问如何组合才能使硬币的数量最少？
+function moneyCount(arr, aim) {
+    if (!arr || arr.length < 1) return 0
+    let dp = []
+    for (let i = 0; i <= aim; i++) {
+        dp[i] = i
+        for (let j = 0; j < arr.length; j++) {
+            if (i >= arr[j] && dp[i - arr[j]] + 1 < dp[i]) {
+                dp[i] = dp[i - arr[j]] + 1
+            }
+        }
+    }
+}
 
 // 将给定的字符串按照以下要求处理后输出
 // 1. 不能包含连续超过三个字母的，应该变为两个  如heloooo -> heloo

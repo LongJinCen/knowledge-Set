@@ -42,31 +42,31 @@ function getMaxLength(arr, aim) {
  */
 
 function maxLengthAwesom(arr, aim) {
-    if (!arr || arr.length === 0) return 0
-    let sums = []
-    let ends = []
-    sums[arr.length - 1] = arr[arr.length - 1]
-    ends[arr.length - 1] = arr.length - 1
-    for (let i = arr.length - 2; i >= 0; i--) {
-        if (sums[i + 1] < 0) {
-            sums[i] = arr[i] + sums[i + 1]
-            ends[i] = ends[i + 1]
+    if (!arr || arr.length < 1) {
+        return 0
+    }
+    let minSum = []
+    let minIndex = []
+    minSum[arr.length - 1] = arr[arr.length - 1]
+    minIndex[arr.length - 1] = arr.length - 1
+    for(let i = arr.length - 2; i >= 0; i--) {
+        if (minSum[i + 1] < 0) {
+            minSum[i] = minSum[i + 1] + arr[i]
+            minIndex[i] = minIndex[i + 1]
         } else {
-            sums[i] = arr[i]
-            ends[i] = i
+            minSum[i] = arr[i]
+            minIndex[i] = i
         }
     }
-    let r = 0,
-        sum = 0,
-        len = 0
-    for (let start = 0; start < arr.length; start++) {
-        while(r < arr.length && sum + sums[r] <= aim) {
-            sum += sums[r]
-            r = ends[r] + 1
+    let maxLen = 0, L = 0, R = 0, sum = 0
+    for (let L = 0; L < arr.length; L++) {
+        while (sum + minSum[R] <= aim && R < arr.length) {
+            sum += minSum[R]
+            R = minIndex[R] + 1
         }
-        sum -= r > start ? arr[start] : 0
-        len = Math.max(len, r - start)
-        r = Math.max(r , start + 1)
+        sum = sum - R > L ? arr[L] : 0
+        maxLen = Math.max(maxLen, R - L)
+        R = Math.max(R, L + 1)
     }
-    return len
+    return maxLen
 }
