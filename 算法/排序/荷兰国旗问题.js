@@ -1,7 +1,7 @@
 /**
- * 
- * @param {原数组} arr 
- * @param {给定的值} num 
+ *
+ * @param {原数组} arr
+ * @param {给定的值} num
  * 给定一个值，要求数组左边的值全部小于 num ，数组右边的值全部大于 num ,中间的值全部等于 num
  * 定义三个区域
  */
@@ -14,9 +14,7 @@ function partition(arr, num) {
     while(cur < more) {
         if(arr[cur] < num) {
             // less 区域扩大
-            // swap(arr, ++less, cur++)
-            less = less + 1
-            cur = cur + 1
+            swap(arr, ++less, cur++)
         } else if(arr[cur] > num) {
             // more 区域扩大
             swap(arr, --more, cur)

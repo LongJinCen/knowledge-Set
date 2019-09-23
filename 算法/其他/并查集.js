@@ -12,12 +12,12 @@
 function Node() {} // 节点
 
 /**
- * 
+ *
  * @param {Node} list 一个由Node组成的List
  */
 function unionFindSet(list) {
     var fatherMap = new Map()
-    var sizeMap = new Map( )
+    var sizeMap = new Map()
     for (let i = 0; i < list.length; i++) {// 初始化
         const element = list[i];
         fatherMap.set(element, element)
