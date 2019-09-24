@@ -138,7 +138,7 @@ Son.prototype.sayHi = function () {}
 ```
 
 - instanceof
-- func.prototype.isPrototypeOf
+- Obj.prototype.isPrototypeOf
 - Object.create() 当为null的时候__proto__为空
 
 ## 原型以及对象常用方法
@@ -153,7 +153,7 @@ Son.prototype.sayHi = function () {}
 ## 判断 src 加载完成
 
 两种方式
-- ele.onload 
+- ele.onload
 - ele.onreadystatechange 并配合 ele.readyState使用 // ie
 
 ## 生成随机数
@@ -186,3 +186,86 @@ function jsonp( url, fn ){
 }
 ```
 ## interface 和 class 的区别和关系
+
+## requestAnimationFrame
+每 16ms 刷新一次
+```
+let dom = document.getElementById('root'),
+        timer = null
+    function animation() {
+      let width = dom.offsetWidth
+      if (width > 500) {
+        cancelAnimationFrame(timer)
+        return
+      }
+      dom.style.width = width + 10 + 'px'
+      timer = requestAnimationFrame(animation)
+    }
+```
+
+## 简单版 Promise
+```
+let PENDING = 'pending',
+        RESOLVE = 'resolved',
+        REJECT = 'rejected'
+    function Promise(fn) {
+      this.value = null
+      this.status = PENDING
+      this.resolvedCb = []
+      this.rejectedCb = []
+      let that = this
+      function resolve(v) {
+        if (that.status === PENDING) {
+          that.status = RESOLVE
+          that.value = v
+          that.resolvedCb.map(cb => cb(v))
+        }
+      }
+      function reject(v) {
+        if (that.status === PENDING) {
+          that.status = REJECT
+          that.v = v
+          that.resolvedCb.map(cb => cb(v))
+        }
+      }
+      try {
+        fn(resolve, reject)
+      } catch (error) {
+        throw new Error(error)
+      }
+    }
+    Promise.prototype.then = function (onFullied, onRejected) {
+      onFullied = typeof onFullied === 'function' ? onFullied : v => v
+      onRejected = typeof onRejected === 'function' ? onRejected : v => v
+      if (this.status === PENDING) {
+        this.resolvedCb.push(onFullied)
+        this.rejectedCb.push(onRejected)
+      }
+      if (this.status === RESOLVE) {
+        onFullied(this.value)
+      }
+      if (this.status === REJECT) {
+        onRejected(this.value)
+      }
+    }
+```
+## new
+在调用 new 的过程中会发生以上四件事情:
+1. 新生成了一个对象
+2. 链接到原型
+3. 绑定 this
+4. 返回新对象
+
+## 缓存位置
+1. Service Worker
+Service Worker 是运行在浏览器背后的独立线程，一般可以用来实现缓存功能。使用 Service Worker的话，传输协
+议必须为 HTTPS。因为 Service Worker 中涉及到请求拦截，所以必须使用 HTTPS 协议来保障安全。
+Service Worker 实现缓存功能一般分为三个步骤:首先需要先注册 Service Worker，然后监听到 install 事件以 后就可以缓存需要的文件，那么在下次用户访问的时候就可以通过拦截请求的方式查询是否存在缓存，存在缓存的话 就可以直接读取缓存文件，否则就去请求数据。
+2. Memory Cache
+浏览器 会把哪些文件丢进内存这个过程就很玄学
+3. Disk Cache
+Disk Cache 也就是存储在硬盘中的缓存,它会根据 HTTP Herder 中的字段判断哪些资源需要缓存， 哪些资源可以不请求直接使用，哪些资源已经过期需要重新请求
+4. Push Cache
+5. 网络请求
+
+## 实际场景应用缓存策略
