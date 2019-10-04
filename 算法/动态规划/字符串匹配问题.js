@@ -11,6 +11,7 @@
 // 递归版本:
 function match(str, exp) {
     function newMatch(i, j) {
+        // 这里使用 exp 的 length 来判断结尾的原因是，''和'.*'这种情况会出现问题。
         if (j === exp.length) {
             return i === str.length
         }

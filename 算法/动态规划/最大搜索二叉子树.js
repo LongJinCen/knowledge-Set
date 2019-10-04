@@ -29,14 +29,14 @@ function BiggestSubBSInTree(head) {
     }
     function process(head) {
         if (!head) {
-            return new RetureType(0, null, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
+            return new RetureType(0, null, Number.MAX_SAFE_INTEGER, Number.MIN_SAFE_INTEGER)
         }
         let leftSubTresInfo = process(head.left)
         let rightSubTresInfo = process(head.right)
         // 可能性3
         let includeItSelf = 0
         if (leftSubTresInfo.head === head.left
-            && rightSubTresInfo.head === head.left
+            && rightSubTresInfo.head === head.right
             && leftSubTresInfo.max < head.value
             && rightSubTresInfo.min > head.value) {
             includeItSelf = leftSubTresInfo.size + rightSubTresInfo.size + 1
