@@ -23,6 +23,7 @@ function getMaxWindow(arr, w) {
     let L = 0, R = -1
     for (let i = 0; i < arr.length; i++) {
         // 往双端队列里面加数的过程,降序。如果大的话，R 就一直减
+        // 通过覆盖下标来记录
         while (R >= L && arr[i] >= arr[queueMax[R]]) {
             R--
         }
